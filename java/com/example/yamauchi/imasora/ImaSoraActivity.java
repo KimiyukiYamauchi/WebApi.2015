@@ -208,7 +208,7 @@ public class ImaSoraActivity extends Activity
 
     @Override
     public Loader<String> onCreateLoader(int id, Bundle bundle) {
-        HttpAsyncLoader loader = null;
+        HttpAsyncLoader2 loader = null;
 
         switch ( id ) {
 
@@ -220,16 +220,16 @@ public class ImaSoraActivity extends Activity
                         "lon=" + bundle.getString("lon") +
                         "&json";
 
-                Log.d("url", url);
-                loader  = new HttpAsyncLoader(this, url);
+                Log.d("ImaSora - url", url);
+                loader  = new HttpAsyncLoader2(this, url);
                 loader.forceLoad();
                 break;
 
             // 天気予報を取得する
             case 1:
-                Log.d("url", bundle.getString("url"));
+                Log.d("ImaSora - url", bundle.getString("url"));
 
-                loader = new HttpAsyncLoader(this, bundle.getString("url"));
+                loader = new HttpAsyncLoader2(this, bundle.getString("url"));
                 loader.forceLoad();
                 break;
         }
@@ -248,6 +248,8 @@ public class ImaSoraActivity extends Activity
                 analyze = new ParseFindsjp();
                 analyze.loadJson(body);
 
+                Log.d("ImaSora: onLoadFinished", analyze.getContent());
+
                 Bundle bundle = new Bundle();
                 bundle.putString("url", "http://www.drk7.jp/weather/json/" + analyze.getContent() + ".js");
                 getLoaderManager().initLoader(1, bundle, this);
@@ -256,9 +258,14 @@ public class ImaSoraActivity extends Activity
             // 天気予報情報を、ビューにセットする
             case 1:
                 analyze = new ParseDrk7jpweather();
+
+                Log.d("ImaSora: onLoadFinished", body);
+
                 analyze.loadJson(body);
 
                 TextView tv = (TextView)findViewById(R.id.fullscreen_content);
+
+                //Log.d("ImaSora: onLoadFinished", analyze.getContent());
 
                 tv.setText( analyze.getContent() );
 

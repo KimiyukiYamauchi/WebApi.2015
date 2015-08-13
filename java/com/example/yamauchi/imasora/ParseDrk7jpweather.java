@@ -1,5 +1,7 @@
 package com.example.yamauchi.imasora;
 
+import android.util.Log;
+
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.util.Iterator;
@@ -17,6 +19,8 @@ public class ParseDrk7jpweather extends ParseJson {
 
         // JsonNodeオブジェクトに読み込む
         JsonNode root = getJsonNode(str);
+
+        Log.d(getClass().getName() + "root = ", root.toString());
 
         if (root != null){
 

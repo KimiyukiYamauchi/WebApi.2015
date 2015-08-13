@@ -14,6 +14,8 @@ public class ParseJson {
     // JSON文字列を、JsonNodeオブジェクトに変換する（1）
     protected JsonNode getJsonNode(String str) {
 
+        Log.d(getClass().getName(), str);
+
         try {
             return new ObjectMapper().readTree(str);
         }
