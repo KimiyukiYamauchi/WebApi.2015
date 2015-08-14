@@ -44,10 +44,11 @@ public class HttpAsyncLoader2 extends AsyncTaskLoader<String>
             url = new URL(url_str);
             // HttpURLConnectionインスタンス作成
             mHttpConnection = (HttpURLConnection)url.openConnection();
-            // GET設定
-            mHttpConnection.setRequestMethod("GET");
-            mHttpConnection.setRequestProperty("Connection", "close");
-            mHttpConnection.setFixedLengthStreamingMode(0);
+
+            mHttpConnection.setRequestMethod("GET"); // GET設定
+            //mHttpConnection.setRequestProperty("Connection", "close");
+            //mHttpConnection.setFixedLengthStreamingMode(0);
+            mHttpConnection.setUseCaches(false); // キャシュを使用しない
 
             mHttpConnection.connect();
 
