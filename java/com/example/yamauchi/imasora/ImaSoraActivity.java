@@ -252,7 +252,7 @@ public class ImaSoraActivity extends Activity
 
                 Bundle bundle = new Bundle();
                 bundle.putString("url", "http://www.drk7.jp/weather/json/" + analyze.getContent() + ".js");
-                getLoaderManager().initLoader(1, bundle, this);
+                getLoaderManager().restartLoader(1, bundle, this);
                 break;
 
             // 天気予報情報を、ビューにセットする
