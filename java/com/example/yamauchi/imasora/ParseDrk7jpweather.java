@@ -48,7 +48,7 @@ public class ParseDrk7jpweather extends ParseJson {
                             area2.path("info").path(0).path("weather_detail").asText() + "\n\n";
                     date = area2.path("info").path(0).path("date").asText();
                 }
-                this.content = date + "\n" + this.content;
+                this.content = "\n\n" + date + "\n" + this.content;
 
             }
             else {
